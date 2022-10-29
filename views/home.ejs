@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="/css/home.css">
+<div id="main-container">
+    <!-- form for the todo app -->
+    <form action="/add-task" method="POST">
+        <h2 id="main-heading">TODO App</h2>
+        <!-- Todo title input -->
+        <div id="title-container">
+            <p id="title-heading">Description</p>
+            <input type="text" id="title" placeholder="What do you need to do?" name="title">
+        </div>
+
+        <!-- Todo category options -->
+        <div id="details-container">
+            <div id="category-container">
+                <p id="category-heading">Category</p>
+                <select name="category" id="category">
+                    <option value="Select a category" selected="true">Select a category</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Work">Work</option>
+                    <option value="School">School</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+
+            <!-- Date picker for TODO -->
+            <input name="date" type="date" id="date-setter">
+        </div>
+
+
+        <div id="tasks-button-container">
+            <!-- Add task submit button -->
+            <button id="add-task" type="submit"><i class="fa-solid fa-plus fa-lg"></i>Add task</button>
+            <!-- Delete tasks submit button -->
+            <button formaction="/delete-task" formmethod="POST" id="delete-task" type="submit"><i
+                    class="fa-solid fa-trash-can fa-lg"></i>Delete
+                Tasks</button>
+        </div>
+
+        <!-- To do container -->
+        <ul id="todo-container">
+            <% for(let i=0;i<locals.todos.length;i++){ %>
+                <!-- To do item -->
+                <li class="todo-item">
+                    <div class="todo-detail-container">
+                        <a href="/update-task?title=<%= locals.todos[i].title  %> ">
+                            <% if(locals.todos[i].status){ %>
+                                <i class="fa-regular fa-square-check"></i>
+                                <input type="checkbox" class="status-checkbox" name="item_name"
+                                    value="<%=locals.todos[i].title %>" checked="checked">
+                                <% } else{ %>
+                                    <i class="fa-regular fa-square"></i>
+                                    <input type="checkbox" class="status-checkbox" name="item_name"
+                                        value="<%=locals.todos[i].title %>">
+                                    <% } %>
+
+                        </a>
+                        <div class="todo-detail">
+                            <% if(locals.todos[i].status){ %>
+                                <!-- Todo title -->
+                                <p class="todo-title strike">
+                                    <%= locals.todos[i].title %>
+                                </p>
+                                <% } else{ %>
+                                    <!-- Todo title -->
+                                    <p class="todo-title">
+                                        <%= locals.todos[i].title %>
+                                    </p>
+                                    <% } %>
+                                        <!-- Todo date-->
+                                        <p class="todo-date">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            <%= locals.todos[i].date %>
+                                        </p>
+                        </div>
+                    </div>
+                    <!-- Todo category -->
+                    <div class="todo-category">
+                        <% if ( locals.todos[i].category !=null) { %>
+                            <p class="<%= locals.todos[i].category %>">
+                                <%= locals.todos[i].category %>
+                            </p>
+                            <% } %>
+
+                    </div>
+                </li>
+                <% } %>
+        </ul>
+    </form>
+</div>
+<script src="https://kit.fontawesome.com/884384c329.js" crossorigin="anonymous"></script>
+<script src="/scripts/home.js"></script>
