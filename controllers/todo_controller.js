@@ -51,7 +51,6 @@ module.exports.updateTask = function (req, res) {
             }
 
             statusOfItem = !todo.status;
-            console.log(statusOfItem);
         });
     });
     return res.redirect('/');
