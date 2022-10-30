@@ -8,10 +8,11 @@ module.exports.createTask = function (req, res) {
         category: req.body.category
     }, function (err, newTodoItem) {
         if (err) {
-            console.log('Error in creating a todo', err);
-            return;
+            console.log('Error in creating a todo');
+        } else {
+            console.log(`Todo item created successfully - ${newTodoItem.title}`);
         }
-        console.log(`Todo item created successfully - ${newTodoItem.title}`);
+
         return res.redirect('/');
     });
 }

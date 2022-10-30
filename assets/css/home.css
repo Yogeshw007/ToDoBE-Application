@@ -4,10 +4,12 @@
 }
 
 #main-container{
-    width: 40vw;
+    min-width: 40vw;
+    width: 400px;
     min-height: 400px;
     text-align: center;
     background-color: white;
+    padding-bottom: 1rem;
 }
 
 #main-heading{
@@ -45,6 +47,16 @@ input#title{
     width: 100%;
 }
 
+#date-container{
+    border-bottom: 2px solid lightgray;
+    display: flex;
+    justify-content: flex-start;
+}
+
+input#date-setter{
+    border: none;
+}
+
 #details-container{
     display: flex;
     flex-direction: row;
@@ -60,12 +72,16 @@ input#title{
     border-right: 2px solid lightgray;
 }
 
-#category-heading{
+#category-heading, #date-setter-heading{
     position: absolute;
-    font-weight: bold;
+    /* font-weight: bold; */
     top: 4px;
     font-size: 0.75rem;
     text-transform: uppercase;
+}
+
+#date-setter-heading{
+    padding-left: 1rem;
 }
 
 #category{
@@ -75,7 +91,7 @@ input#title{
     outline: none;
 }
 
-#date-setter{
+#date-container{
     flex: 1;
     color: black;
     padding-right: 1rem;
@@ -197,7 +213,7 @@ input#title{
     background-color: palevioletred
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 740px) {
     #main-container{
         width: 100vw;
     }
